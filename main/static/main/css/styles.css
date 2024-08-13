@@ -1,0 +1,278 @@
+@font-face {
+  font-family: "Main";
+  src: url("../fonts/Dana-Medium.woff");
+}
+html {
+  min-height: 100vh;
+  overflow: auto;
+}
+
+body {
+  min-height: 100vh;
+  overflow: auto;
+  background-color: #f0f0f1;
+  font-family: "Main";
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.layout {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.contianer {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hidden {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.hidden .hidden1 {
+  position: absolute;
+  content: "";
+  width: 80px;
+  height: 50%;
+  left: 0;
+  top: 25%;
+  background-color: #a67dd9;
+  filter: blur(100px);
+}
+.hidden .hidden2 {
+  position: absolute;
+  content: "";
+  width: 80px;
+  height: 50%;
+  right: 0;
+  top: 25%;
+  background-color: #5ad9ff;
+  filter: blur(100px);
+}
+
+.navbar-container {
+  padding: 20px 100px 10px 100px;
+}
+.navbar-container .navbar {
+  backdrop-filter: blur(7.4px);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-container .navbar #logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  width: 30%;
+}
+.navbar-container .navbar #logo img {
+  transition: 0.8s transform ease;
+  width: 80px;
+}
+.navbar-container .navbar #logo img:hover {
+  cursor: pointer;
+  transform: scale(1.1) rotateY(360deg);
+}
+.navbar-container .navbar #buttons {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.navbar-container .navbar #buttons button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: rgba(67, 67, 67, 0.752);
+}
+.navbar-container .navbar #buttons button p {
+  font-size: 16px;
+  font-family: "Main";
+  transition: 0.4s ease-in-out color;
+}
+.navbar-container .navbar #buttons button p:after {
+  content: "";
+  display: block;
+  margin: auto;
+  height: 2px;
+  width: 0px;
+  background: transparent;
+  transition: width 0.4s ease-in-out, background-color 0.4s ease-in-out;
+}
+.navbar-container .navbar #buttons button p:hover {
+  cursor: pointer;
+  color: #883de4;
+}
+.navbar-container .navbar #buttons button p:hover:after {
+  width: 100%;
+  background: #883de4;
+}
+.navbar-container .navbar #login-button {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+}
+.navbar-container .navbar #login-button #user {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 5px;
+  width: 50%;
+}
+.navbar-container .navbar #login-button #user .submit-input {
+  width: 160px;
+}
+.navbar-container .navbar #login-button #user .submit-input .pushable {
+  width: 100%;
+  transition: 0.4s box-shadow ease;
+  background: #883de4;
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+}
+.navbar-container .navbar #login-button #user .submit-input .front {
+  width: 100%;
+  display: block;
+  padding: 10px 0px;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: #a67dd9;
+  color: white;
+  transform: translateY(-6px);
+  font-family: "Main";
+}
+.navbar-container .navbar #login-button #user .submit-input .pushable:hover {
+  box-shadow: 0px 0px 16px #883de4;
+}
+.navbar-container .navbar #login-button #user .submit-input .pushable:active .front {
+  transform: translateY(0px);
+  background: #883de4;
+}
+.navbar-container .navbar #login-button #login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  text-decoration: none;
+  border-radius: 9999px;
+  background-color: #a67dd9;
+  padding: 10px;
+  width: 120px;
+  color: white;
+  font-size: 18px;
+}
+.navbar-container .navbar #login-button #login p {
+  margin: 0;
+}
+.navbar-container .navbar #login-button #login::before {
+  transition: 0.6s all ease;
+  z-index: -1;
+  padding: 0 10px 0 10px;
+  content: "";
+  position: absolute;
+  background-color: #a67dd9;
+  width: 120px;
+  height: 47.5px;
+  border-radius: 9999px;
+  transform-origin: 0, 0;
+}
+.navbar-container .navbar #login-button #login:hover::before {
+  cursor: pointer;
+  transform: scale(1.1, 1.05);
+  box-shadow: 0px 0px 18px #883de4;
+}
+
+.footer-container {
+  backdrop-filter: blur(0px);
+  width: 100%;
+  top: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+.footer-container .footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.footer-container .footer .footer-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.footer-container .footer .footer-content .contact-ways {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: auto auto;
+  place-content: center;
+  gap: 10px;
+}
+.footer-container .footer .footer-content .contact-ways .contact-way {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 5px;
+  text-decoration: none;
+  color: black;
+}
+.footer-container .footer .footer-content .contact-ways .contact-way i {
+  transition: 0.4s transform ease-in-out;
+  font-size: 26px;
+  transform: scale(0.8);
+}
+.footer-container .footer .footer-content .contact-ways .contact-way i:hover {
+  cursor: pointer;
+}
+.footer-container .footer .footer-content .contact-ways .contact-way:hover i {
+  transform: scale(1);
+}
+.footer-container .footer .footer-content .policy p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+  z-index: -1;
+}
+.wave svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 114px;
+}
+
+.wave .shape-fill {
+  fill: rgba(170, 127, 222, 0.5529411765);
+}
+
+/*# sourceMappingURL=styles.css.map */
