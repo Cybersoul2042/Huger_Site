@@ -1,10 +1,31 @@
 $Main-Color: #a67dd9;
-$Main-Color-lighter: #aa7fde8d;
+$Main-Color-lighter: #b389e68d;
 $Main-Color-Darker: #883de4;
+$Secondry-Color: #da88df;
+$Thrid-Color: #5d66ea;
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 90deg;
+    inherits: false;
+}
+
+@keyframes spin {
+    from{
+        --angle: 90deg
+    }
+    to{
+        --angle: 450deg;
+    }
+}
 
 @font-face {
     font-family: "Main";
     src: url("../fonts/Dana-Medium.woff");
+}
+.fill{
+    width: 100%;
+    height: 26.6%;
 }
 
 html {
@@ -15,7 +36,7 @@ html {
 body {
     min-height: 100vh;
     overflow: auto;
-    background-color: #f0f0f1;
+    background-color: hsl(266, 100%, 96%);
     font-family: 'Main';
 }
 
@@ -24,20 +45,6 @@ html, body {
     padding: 0;
 }
 
-.layout{
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    place-items: center;
-}
-.contianer{
-    width: 90%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    
-    justify-content: space-between;
-}
 .hidden{
     width: 100%;
     height: 100%;
@@ -64,10 +71,74 @@ html, body {
     }
     
 }
+
+.layout{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+.contianer::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 2px;
+    padding-top: 2.5px;
+    padding-bottom: 3.5px;
+    padding-right: 3px;
+    padding-left: 3px;
+    border-radius: 20px;
+    background-image: conic-gradient($Main-Color, $Secondry-Color, $Thrid-Color,$Thrid-Color, $Secondry-Color, $Main-Color);
+} 
+.contianer{
+    position: relative;
+    width: 93vw;
+    height: 95%;
+    border-radius: 20px;
+    margin: auto;
+    background-color: white;
+}
+.contianer::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 2px;
+    padding-top: 1px;
+    padding-bottom: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+    border-radius: 20px;
+    background-image: conic-gradient($Main-Color, $Secondry-Color, $Thrid-Color,$Thrid-Color, $Secondry-Color, $Main-Color);
+    filter: blur(1rem);
+    opacity: 0.7;
+}
+
+.container-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+
 .navbar-container{
-    padding: 20px 100px 10px 100px;
+    max-width: 100%;
+    height: 100px;
+    padding: 10px 30px 0px 30px;
     .navbar{
-        backdrop-filter: blur(7.4px);
+        backdrop-filter: blur(0px);
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -92,36 +163,89 @@ html, body {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            button{
+            .normal-button{
+                width: 100px;
                 background-color: transparent;
                 outline: none;
                 border: none;
-                color: rgba(67, 67, 67, 0.752);
+                color: rgba(67, 67, 67, 0.613);
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
                 p{
-                    font-size: 16px;
+                    font-size: 1rem;
                     font-family: "Main";
                     transition: 0.4s ease-in-out color;
+                    margin: 0;
                 }
-                p:after {
-                    content: '';
-                    display: block;
-                    margin: auto;
-                    height: 2px;
-                    width: 0px;
-                    background: transparent;
-                    transition: width 0.4s ease-in-out, background-color 0.4s ease-in-out;
-                }    
                 p:hover{
                     cursor: pointer;
                     color: $Main-Color-Darker;
                 }
-                p:hover:after {
-                    width: 100%;
-                    background: $Main-Color-Darker;
+                a{
+                    font-size: 1rem;
+                    font-family: "Main";
+                    transition: 0.4s ease-in-out color;
+                    margin: 0;
+                    text-decoration: none;
+                    color: rgba(67, 67, 67, 0.613);
+                }
+                a:hover{
+                    cursor: pointer;
+                    color: red;
                 }
             }
-            
+            #project{
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                border-radius: 9999px;
+                padding: 10px;
+                width: 150px;
+                border: 0px solid transparent;
+                background: white;
+                p{
+                    font-size: 1.2rem;
+                    margin: 0;
+                    background: linear-gradient(to right, $Secondry-Color, $Thrid-Color, $Main-Color);
+                    -webkit-text-fill-color: transparent;
+                    -webkit-background-clip: text;
+                    background-color: white;
+                }
+            }
+            #project:hover{
+                cursor: pointer;
+            }
+            #project::before, #project::after{
+                transition: 2s opacity ease;
+                z-index: -1;
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 50%;
+                left: 50%;
+                translate: -50% -50%;
+                opacity: 0;
+                visibility: hidden;
+            }
+            #project:hover::before, #project:hover::after{
+                cursor: pointer;
+                transition: 2s opacity ease;
+                padding: 2px;
+                border-radius: 9999px;
+                background: conic-gradient(from var(--angle), $Secondry-Color, $Main-Color, $Secondry-Color);
+                animation: 2s spin linear infinite;
+                opacity: 0.9;
+                visibility: visible;
+            }
+            #project:hover::before{
+                filter: blur(1rem);
+                opacity: 0.8;
+            }
             
            
         }
@@ -133,76 +257,58 @@ html, body {
             align-items: center;
             justify-content: right;
             #user{
-                display: flex;
-                align-items: center;
-                justify-content: right;
-                gap: 5px;
-                width: 50%;
-                .submit-input{
-                    width: 160px;
-                    .pushable{
-                        width: 100%;
-                        transition: 0.4s box-shadow ease;
-                        background: $Main-Color-Darker;
-                        border-radius: 12px;
-                        border: none;
-                        padding: 0;
-                        cursor: pointer;
-                        outline-offset: 4px;
-                    }
-                    .front{
-                        width: 100%;
-                        display: block;
-                        padding: 10px 0px;
-                        border-radius: 12px;
-                        font-size: 1rem;
-                        background: $Main-Color;
-                        color: white;
-                        transform: translateY(-6px);
-                        font-family: 'Main';
-                    }
-                    .pushable:hover{
-                        box-shadow: 0px 0px 16px $Main-Color-Darker;
-                    }
-                    .pushable:active .front{
-                        transform: translateY(0px);
-                        background: $Main-Color-Darker;
-                    }
-                }
-            }
-            #login{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                border: 1px solid transparent;
-                text-decoration: none;
-                border-radius: 9999px;
-                background-color: $Main-Color;
-                padding: 10px;
-                width: 120px;
-                color: white;
-                font-size: 18px;
+                width: 300px;
+                text-align: right;
                 p{
                     margin: 0;
                 }
             }
-            #login::before{
-                transition: 0.6s all ease;
+            #login{
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                border-radius: 9999px;
+                padding: 10px;
+                width: 120px;
+                font-size: 1.2rem;
+                background: white;
+                p{
+                    margin: 0;
+                    background: linear-gradient(to right, $Secondry-Color, $Thrid-Color, $Main-Color);
+                    -webkit-text-fill-color: transparent;
+                    -webkit-background-clip: text;
+                    background-color: white;
+                }
+            }
+            #login::before, #login::after{
+                transition: 1s opacity ease;
                 z-index: -1;
-                padding: 0 10px 0 10px;
                 content: "";
                 position: absolute;
-                background-color: $Main-Color;
-                width: 120px;
-                height: 47.5px;
+                width: 100%;
+                height: 100%;
+                top: 50%;
+                left: 50%;
+                translate: -50% -50%;
+                opacity: 0;
+                visibility: hidden;
+            }
+            #login:hover::before, #login:hover::after{
+                cursor: pointer;
+                transition: 1s opacity ease;
+                padding: 2px;
                 border-radius: 9999px;
-                transform-origin: 0, 0;
+                background: conic-gradient(from var(--angle), transparent, $Main-Color, $Secondry-Color, $Thrid-Color);
+                animation: 2s spin linear infinite;
+                opacity: 0.9;
+                visibility: visible;
             }
             #login:hover::before{
-                cursor: pointer;
-                transform: scale(1.1, 1.05);
-                box-shadow: 0px 0px 18px $Main-Color-Darker;
+                filter: blur(1rem);
+                opacity: 0.8;
             }
             
         }
@@ -210,18 +316,148 @@ html, body {
 }
 
 
-
+.body-container{
+    height: 80%;
+    display: grid;
+    grid-template-columns: auto;
+    .project-page{
+        width: 100%;
+        .submit-project{
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            #submit{
+                transition: 0.4s box-shadow ease;
+                width: 200px;
+                height: fit-content;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                border-radius: 20px;
+                border: 2px solid transparent;
+                outline: none;
+                background-color: $Main-Color;
+                p{
+                    font-size: 1.1rem;
+                    font-family: 'Main';
+                    margin: 3px;
+                    margin-right: 5px;
+                    padding-bottom: 3px;
+                    color: white;
+                }
+                i{
+                    margin-left: 5px;
+                    color: white;
+                }
+            }
+            #submit:hover{
+                cursor: pointer;
+                box-shadow: 0px 0px 12px $Secondry-Color;
+            }
+        }
+    }
+    .submit-page{
+        width: 100%;
+        direction: rtl;
+        .form-container{
+            padding: 20px;
+            form{
+                .form-header{
+                    p{
+                        font-size: 1.2rem;
+                        color: $Main-Color;
+                    }
+                }
+                .form-body{
+                    .form-group{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 8px;
+                        margin-bottom: 12px;
+                        strong{
+                            color: $Thrid-Color;
+                        }
+                        input{
+                            width:250px;
+                            padding: 10px;
+                            border-radius: 10px;
+                            outline: none;
+                            border: 1px solid rgb(213, 213, 213);
+                            font-size: 1rem;
+                            font-family: 'Main';
+                        }
+                        input:focus{
+                            border: 1px solid $Main-Color;
+                        }
+                        .major-year{
+                            select{
+                                width: fit-content;
+                                font-family: 'Main';
+                                font-size: 1rem;
+                                border: 1px solid rgb(212, 212, 212);
+                                border-radius: 12px;
+                                outline: none;
+                                padding: 3px;
+                                option{
+                                    font-family: 'Main';
+                                    outline: none;
+                                    border: 0px rgb(212, 212, 212) ;
+                                }
+                            }
+                            select:focus{
+                                border-color: $Main-Color;
+                            }
+                        }
+                        textarea{
+                            resize: vertical;
+                            width: 600px;
+                            font-family: 'Main';
+                            font-size: 0.9rem;
+                            border-radius: 12px;
+                            padding: 10px;
+                            outline: none;
+                            border: 1px solid rgb(213, 213, 213);
+                        }   
+                        textarea:focus{
+                            border-color: $Main-Color;
+                        }
+                        
+                    }
+                }
+                .submit-input{
+                    margin-top: 10px;
+                    .submit-button{
+                        transition: 0.6s box-shadow ease;
+                        border-radius: 12px;
+                        background-color: $Main-Color;
+                        border: 0px solid transparent;
+                        width: 100px;
+                        padding: 5px;
+                        padding-bottom: 8px;
+                        color: white;
+                        font-size: 1.2rem;
+                        font-family: 'Main';
+                    }
+                    .submit-button:hover{
+                        cursor: pointer;
+                        box-shadow: 0px 0px 12px $Main-Color-Darker;
+                    }
+                }
+            }
+        }
+    }
+}
 
 
 
 .footer-container{
-    backdrop-filter: blur(0px);
     width: 100%;
-    top: 100%;
     height: 100px;
-    display: flex;
-    justify-content: center;
     .footer{
+        height: 100%;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -231,24 +467,23 @@ html, body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-evenly;
+            justify-content: space-around;
             .contact-ways{
                 width: fit-content;
-                display: grid;
-                grid-template-columns: auto auto;
-                place-content: center;
-                gap: 10px;
+                display: flex;
+                align-items: center;
+                gap: 20px;
                 .contact-way{
                     display: flex;
                     flex-direction: row;
                     align-items: center;
                     justify-content: left;
-                    gap: 5px;
+                    gap: 3px;
                     text-decoration: none;
                     color: black;
                     i{
                         transition: 0.4s transform ease-in-out;
-                        font-size: 26px;
+                        font-size: 1.8rem;
                         transform: scale(0.8);
                     }
                     i:hover{

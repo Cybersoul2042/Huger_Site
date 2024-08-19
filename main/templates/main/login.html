@@ -10,47 +10,99 @@
     </head>
     <body>
         <div class="container">
-            <div class="form-container">
-                <div class="form">
-                    <div class="form-info">
-                        {% if message %}
-                            <div>{{ message }}</div>
-                        {% endif %}
-                        <form action="{% url 'login' %}" method="post">
-                            {% csrf_token %}
-                            <div class="form-body">
-                                <div class="form-group">
-                                    <strong>ایمیل</strong>
-                                    <input autofocus class="form-control" type="text" name="email" required>
-                                </div>
-                                <div class="form-group">
-                                    <strong>رمز عبور :</strong>
-                                    <input class="form-control" type="password" name="password" required>
-                                </div>
+            <div class="layout">
+                <div class="slider" style="transform: translate(0%);">
+                    <div class="slider-content">
+                        <div class="sign-in" style="transform: translate(0%);">
+                            <div class="welcome">
+                                <p id="header">پژوهشگر، سلام !!</p>
+                                <p id="text">اگر هنوز خودتو پژوهشگر نمیدونی سریع تر ثبت نام کن!!!</p>
                             </div>
-                            <div class="submit-input">
-                                <button type="submit" class="pushable">
-                                    <span class="front">
-                                        ورود
-                                    </span>
+                            <div class="sign-in-button">
+                                <button class="change-button">
+                                   ثبت نام کنید
                                 </button>
                             </div>
-                        </form>
-                        <div class="alt">
-                            <p>اکانت ندارید ؟؟</p>
-                            <a href="{% url 'register' %}">ثبت نام کنید .</a>
                         </div>
-                        <div class="curve">
-                            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                                <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" class="shape-fill"></path>
-                            </svg>
-                            <p>ورود</p>
+                        <div class="register" style="transform: translate(100%);">
+                            <div class="welcome">
+                                <p id="header">خوش آمدید !!</p>
+                                <p id="text">پژوهشگری ؟؟ پس سریع تر طرح پژوهشتو ثبت کن !!</p>
+                            </div>
+                            <div class="register-button">
+                                <button class="change-button">
+                                    وارد شوید
+                                </button>
+                            </div>
                         </div>
+                        
                     </div>
-                    
-                </div> 
+                </div>
+                <div class="login-container">
+                    <div class="form">
+                        <div class="form-content">
+                            <form action="{% url 'login' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="form-header">
+                                    <p>وارد شوید</p>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <input autofocus class="form-control" type="email" placeholder="ایمیل" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" name="password" placeholder="رمز عبور" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <p>رمز عبور خود را فراموش کردید ؟؟</p>
+                                    </div>
+                                </div>
+                                <div class="submit-input">
+                                    <button type="submit" class="submit-button">
+                                        <p class="submit-text">
+                                            ورود
+                                        </p>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div> 
+                </div>
+                <div class="register-container">
+                    <div class="form">
+                        <div class="form-content">
+                            <form action="{% url 'login' %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-header">
+                                    <p>ثبت نام</p>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                       
+                                        <input autofocus class="form-control" type="email" name="email" placeholder="ایمیل" required>
+                                    </div>
+                                    <div class="form-group">
+                                       
+                                        <input autofocus class="form-control" type="text" name="password" placeholder="رمز عبور" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" name="confirmation" placeholder="تایید رمز عبور" required>
+                                    </div>
+                                </div>
+                                <div class="submit-input">
+                                    <button type="submit" class="submit-button">
+                                        <span class="submit-text">
+                                            ثبت نام
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div> 
+                </div>
             </div>
         </div>
+        <script src="{% static 'main/ts/login.js' %}"></script>
     </body>
 </html>
     

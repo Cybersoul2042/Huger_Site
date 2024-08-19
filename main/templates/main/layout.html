@@ -11,93 +11,95 @@
     </head>
     <body>
         <div class="hidden" aria-hidden="true">
-            <div class="hidden1"></div>
-            <div class="hidden2"></div>
+            <!-- <div class="hidden1"></div> -->
+            <!-- <div class="hidden2"></div> -->
         </div>
         <div class="layout">
             <div class="contianer">
-                <header class="navbar-container">
-                    <div class="navbar">
-                        <div class="navbar-section" id="logo">
-                            <img src="{% static 'main/imgs/site_logo.png' %}" alt="logo" id="img1">
-                        </div>
-                        <div class="navbar-section" id="buttons">
-                            <button id="contact-us">
-                                <p>ارتباط با ما</p>
-                            </button>
-                            <button id="about">
-                                <p>درباره ما</p>
-                            </button>
-                            <button id="news">
-                                <p>اخبار هوگر</p>
-                            </button>
-                            
-                            {% if user.is_authenticated %}
-                                <button id="project">
-                                    <p>پیگیری طرح</p>
-                                </button>
-                            {% endif %}
+                <div class="container-content">
+                    <header class="navbar-container">
+                        <div class="navbar">
+                            <div class="navbar-section" id="logo">
+                                <img src="{% static 'main/imgs/site_logo.png' %}" alt="logo" id="img1">
+                            </div>
+                            <div class="navbar-section" id="buttons">
+                                <div class="normal-button" id="contact-us">
+                                    <p>ارتباط با ما</p>
+                                </div>
+                                <div class="normal-button" id="about">
+                                    <p>درباره ما</p>
+                                </div>
                                 
+                                {% if user.is_authenticated %}
+                                    <a id="project">
+                                        <p>ثبت / پیگیری طرح</p>
+                                    </a>
+                                {% endif %}
+                                <div class="normal-button" id="news">
+                                    <p>اخبار هوگر</p>
+                                </div>
+                                {% if user.is_authenticated %}
+                                    <div class="normal-button" id="logout">
+                                        <a href="{% url 'logout' %}">
+                                            خروج
+                                        </a>
+                                    </div>
+                                {% endif %}
+                                    
+                            </div>
+                            <div class="navbar-section" id="login-button">
+                                
+                                {% if user.is_authenticated %}
+                                    <div id="user">
+                                        <p>
+                                            !! {{user.username}} به هوگر خوش آمدی
+                                        </p>
+                                    </div>
+                                {% else %}
+                                    <div class="div"></div>
+                                    <a href="{% url 'login' %}" id="login">
+                                        <p>ورود / ثبت نام</p>
+                                    </a>
+                                {% endif %}
+                                    
+                                
+                            </div>
                         </div>
-                        <div class="navbar-section" id="login-button">
-                            
-                            {% if user.is_authenticated %}
-                                <div id="user">
-                                    <a href="#" class="submit-input">
-                                        <button class="pushable">
-                                            <span class="front">
-                                                ثبت طرح
-                                            </span>
-                                        </button>
+                    </header>
+                    <div class="body-container">
+                        {% block content %}
+                        
+                        {% endblock content %}
+                    </div>
+                    <footer class="footer-container">
+                        <div class="footer">
+                            <div class="footer-content">
+                                <div class="contact-ways">
+                                    <a href="#" class="contact-way" id="email">
+                                        <i class="fa-solid fa-envelope"></i>
+                                        <p style="margin: 0;">Email Us</p>
+                                    </a>
+                                    <a href="https://t.me/+pDLLMixRtuFjZTk0" class="contact-way" id="telegram">
+                                        <i class="fa-brands fa-telegram"></i>
+                                        <p style="margin: 0;">Telegram</p>
+                                    </a>
+                                    <a href="https://www.instagram.com/huger.14?igsh=bGV0bmI4enBoNTRw" class="contact-way" id="instagram">
+                                        <i class="fa-brands fa-instagram"></i>
+                                        <p style="margin: 0;">Instagram</p>
+                                    </a>
+                                    <a href="#" class="contact-way" id="ticket">
+                                        <i class="fa-solid fa-ticket"></i>
+                                        <p style="margin: 0;">Ticket</p>
                                     </a>
                                 </div>
-                            {% else %}
-                                <a href="{% url 'login' %}" id="login">
-                                    <p>ورود / ثبت نام</p>
-                                </a>
-                            {% endif %}
-                                
-                            
+                                <div class="policy">
+                                    <p>تمام حقوق این سایت متعلق به تیم طراحی هوگر می باشد .</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </header>
-                <div class="body-container">
-                    {% block content %}
-                    {% endblock content %}
+                    </footer>
                 </div>
-                <footer class="footer-container">
-                    <div class="footer">
-                        <div class="footer-content">
-                            <div class="contact-ways">
-                                <a href="#" class="contact-way" id="email">
-                                    <i class="fa-solid fa-envelope"></i>
-                                    <p style="margin: 0;">Email Us</p>
-                                </a>
-                                <a href="https://t.me/+pDLLMixRtuFjZTk0" class="contact-way" id="telegram">
-                                    <i class="fa-brands fa-telegram"></i>
-                                    <p style="margin: 0;">Telegram</p>
-                                </a>
-                                <a href="https://www.instagram.com/huger.14?igsh=bGV0bmI4enBoNTRw" class="contact-way" id="instagram">
-                                    <i class="fa-brands fa-instagram"></i>
-                                    <p style="margin: 0;">Instagram</p>
-                                </a>
-                                <a href="#" class="contact-way" id="ticket">
-                                    <i class="fa-solid fa-ticket"></i>
-                                    <p style="margin: 0;">Ticket</p>
-                                </a>
-                            </div>
-                            <div class="policy">
-                                <p>تمام حقوق این سایت متعلق به تیم طراحی هوگر می باشد .</p>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
             </div>
-        </div>
-        <div class="wave">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" class="shape-fill"></path>
-            </svg>
         </div>
         <script src="{% static 'main/ts/main.js' %}"></script>
     </body>

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import CustomUser
+from .models import CustomUser, Project
 
 
 class CustomUserAdmin(UserAdmin):
@@ -24,5 +24,12 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ("email",)
     ordering = ("email",)
 
+class ProjectAdmin(admin.ModelAdmin):
+    model = Project
+    list_display = ("p_Leader", "user", "p_Subject", "isChecked",)
+    
+    ordering = ("p_Leader",)
+
 
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(Project, ProjectAdmin)
