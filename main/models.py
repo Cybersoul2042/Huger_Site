@@ -24,7 +24,7 @@ class Project(models.Model):
     p_Year = models.CharField(max_length = 64)
     p_Subject = models.CharField(max_length = 128)
     p_Description = models.TextField()
-    p_Image = models.ImageField()
+    p_Image = models.ImageField(upload_to='media/', blank=True)
     p_Members = models.ManyToManyField(CustomUser)
     isChecked = models.BooleanField(default=False)
 

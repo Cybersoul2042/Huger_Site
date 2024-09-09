@@ -18,8 +18,14 @@ def get_emails():
         emails.append(user.email)
 
     return emails
+    
 
 def index(request):
+    if request.user.is_authenticated:
+        projects = Project.objects.filter(user = request.user)
+        return render(request, "main/index.html", {
+        "projects": projects
+        })
     if request.method == "POST":
         username = request.POST["username"]
         major = request.POST["major"]
@@ -39,8 +45,9 @@ def index(request):
             memberUser = CustomUser.objects.filter(email = member).first()
             project.p_Members.add(memberUser)
         project.save()
-        
+            
     return render(request, "main/index.html")
+    
 
 def login_view(request):
     if request.method == "POST":
