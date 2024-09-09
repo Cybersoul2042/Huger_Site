@@ -18,14 +18,16 @@ class CustomUser(AbstractUser):
         return self.email
 
 class Project(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete = models.CASCADE, related_name="Leader_email")
+    code = models.CharField(max_length=16)
+    user = models.CharField(max_length=256)
     p_Leader = models.CharField(max_length = 256)
     p_Major = models.CharField(max_length = 64)
     p_Year = models.CharField(max_length = 64)
     p_Subject = models.CharField(max_length = 128)
     p_Description = models.TextField()
-    p_Image = models.ImageField(upload_to='media/', blank=True)
-    p_Members = models.ManyToManyField(CustomUser)
+    p_Image = models.ImageField(upload_to='photos/', blank=True , default=None)
+    p_Video = models.ImageField(upload_to='videos/', blank=True)
+    p_Members = models.ManyToManyField(CustomUser, default=None)
     isChecked = models.BooleanField(default=False)
 
     def serialized(self):

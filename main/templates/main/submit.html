@@ -1,0 +1,63 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+    <div class="submit-page">
+        <div class="form-container">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-header">
+                    <p>به ثبت طرح خوش آمدید :</p>
+                </div>
+                <div class="form-body">
+                    <div class="form-group">
+                        <strong>نام و نام خانوادگی:</strong>
+                        <input autofocus class="form-control" type="text" placeholder="نام و نام خانوادگی" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <strong>رشته و مقطع تحصیلی :</strong>
+                        <div class="major-year">
+                            <select name="major" id="majors">
+                                <option value="ریاضی و فیزیک">ریاضی و فیزیک</option>
+                                <option value="تجربی">تجربی</option>
+                                <option value="انسانی">انسانی</option>
+                                <option value="شبکه و نرم افزار">شبکه و نرم افزار</option>
+                            </select>
+                            <select name="year" id="years">
+                                <option value="دهم">دهم</option>
+                                <option value="یازدهم">یازدهم</option>
+                                <option value="دوازدهم">دوازدهم</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <strong>نام طرح :</strong>
+                        <input autofocus class="form-control" type="text" placeholder="نام طرح" name="p_name" required>
+                    </div>
+                    <div class="form-group">
+                        <strong>توضیحات :</strong>
+                        <textarea autofocus class="form-control" placeholder="توضیحات" name="p_desc" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <strong>عکس :</strong>
+                        <input autofocus class="form-control" type="file" name="image" required>
+                    </div>
+                    <div class="form-group">
+                        <strong>ویریو معرفی طرح :</strong>
+                        <input autofocus class="form-control" type="file" name="video">
+                    </div>
+                    <div class="form-group">
+                        <strong>ایمیل اعضای گروه :</strong>
+                        <div class="members">
+                            <input autofocus class="form-control" type="email" name="member1" placeholder="عضو 1">
+                            <input autofocus class="form-control" type="email" name="member2" placeholder="عضو 2">
+                            <input autofocus class="form-control" type="email" name="member3" placeholder="عضو 3">
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="submit-input">
+                    <input type="submit" class="submit-button">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
