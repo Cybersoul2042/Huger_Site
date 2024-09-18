@@ -52,6 +52,7 @@ def submit_project(request):
         username = request.POST["username"]
         major = request.POST["major"]
         year = request.POST["year"]
+        number = request.POST["phone-number"]
         subject = request.POST["p_name"]
         desc = request.POST["p_desc"]
         image = request.FILES.get("image")
@@ -61,7 +62,7 @@ def submit_project(request):
             if(request.POST[f'member{i}']):
                 members.append(request.POST[f'member{i}'])
 
-        project = Project(code = code, user = request.user.username, p_Leader=username, p_Major=major, p_Year=year, p_Subject=subject, p_Description=desc, p_Image=image, p_Video = video)
+        project = Project(code = code, user = request.user.username, p_Leader=username, p_Major=major, p_Number = number,p_Year=year, p_Subject=subject, p_Description=desc, p_Image=image, p_Video = video)
         project.save()
     
         for member in members:

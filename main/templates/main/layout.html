@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,19 +20,19 @@
                             </div>
                             <div class="navbar-section" id="buttons">
                                 <div class="normal-button" id="contact-us">
-                                    <p>ارتباط با ما</p>
+                                    <a id="site-button" href="{% url 'index' %}">ارتباط با ما</a>
                                 </div>
                                 <div class="normal-button" id="about">
-                                    <p>درباره ما</p>
+                                    <a id="site-button">درباره ما</a>
                                 </div>
                                 
                                 {% if user.is_authenticated %}
-                                    <a id="project" href="{% url "submissions" %}">
+                                    <a id="project" href="{% url 'submissions' %}">
                                         <p>ثبت / پیگیری طرح</p>
                                     </a>
                                 {% endif %}
                                 <div class="normal-button" id="news">
-                                    <p>اخبار هوگر</p>
+                                    <a id="site-button">اخبار هوگر</a>
                                 </div>
                                 {% if user.is_authenticated %}
                                     <div class="normal-button" id="logout">
@@ -52,13 +52,10 @@
                                         </p>
                                     </div>
                                 {% else %}
-                                    <div class="div"></div>
                                     <a href="{% url 'login' %}" id="login">
                                         <p>ورود / ثبت نام</p>
                                     </a>
                                 {% endif %}
-                                    
-                                
                             </div>
                         </div>
                     </header>

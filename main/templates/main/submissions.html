@@ -32,6 +32,9 @@
                             {% endfor %}
                         </div>
                         <div class="status">
+                            <div class="submission-page">
+                                <a href="{% url "project" project.code %}">بررسی پژوهش</a>
+                            </div>
                             <div class="state">
                                 {% if project.isChecked == False %}
                                     <p>...در حال پردازش</p>
@@ -39,11 +42,6 @@
                                     <p>.تایید شد</p>
                                 {% endif %}
                             </div>
-                            <div class="project-page">
-                                <a href="{% url "project" project.code %}">بررسی پژوهش</a>
-                            </div>
-                            
-                                
                         </div>
                     </div>
                 {% endfor %}

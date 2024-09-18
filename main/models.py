@@ -22,6 +22,7 @@ class Project(models.Model):
     user = models.CharField(max_length=256)
     p_Leader = models.CharField(max_length = 256)
     p_Major = models.CharField(max_length = 64)
+    p_Number = models.CharField(max_length=11)
     p_Year = models.CharField(max_length = 64)
     p_Subject = models.CharField(max_length = 128)
     p_Description = models.TextField()
