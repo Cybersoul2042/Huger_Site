@@ -4,13 +4,18 @@
     <div class="submit-page">
         <div class="form-container">
             <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="form-header">
                     <p>به ثبت طرح خوش آمدید :</p>
                 </div>
                 <div class="form-body">
                     <div class="form-group">
-                        <strong>نام و نام خانوادگی:</strong>
-                        <input autofocus class="form-control" type="text" placeholder="نام و نام خانوادگی" name="username" required>
+                        <strong>نام :</strong>
+                        <input autofocus class="form-control" type="text" placeholder="نام" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <strong>نام خانوادگی :</strong>
+                        <input autofocus class="form-control" type="text" placeholder="نام خانوادگی" name="surname" required>
                     </div>
                     <div class="form-group">
                         <strong>شماره تلفن همراه :</strong>
@@ -38,24 +43,32 @@
                     </div>
                     <div class="form-group">
                         <strong>توضیحات :</strong>
-                        <textarea autofocus class="form-control" placeholder="توضیحات" name="p_desc" required></textarea>
+                        <textarea autofocus placeholder="توضیحات" name="p_desc" required></textarea>
                     </div>
                     <div class="form-group">
                         <strong>عکس :</strong>
-                        <input autofocus class="form-control" type="file" name="image" required>
+                        <div class="forms">
+                            <div class="images">
+                                <input autofocus class="form-control" type="file" name="image1" placeholder="هیچ فایلی انتخاب نشده ..." required>
+                            </div>
+                            <div class="add-button" id="image-add">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <strong>ویریو معرفی طرح :</strong>
                         <input autofocus class="form-control" type="file" name="video">
                     </div>
                     <div class="form-group">
-                        <strong>ایمیل اعضای گروه :</strong>
-                        <div class="members">
-                            <input autofocus class="form-control" type="email" name="member1" placeholder="عضو 1">
-                            <input autofocus class="form-control" type="email" name="member2" placeholder="عضو 2">
-                            <input autofocus class="form-control" type="email" name="member3" placeholder="عضو 3">
+                        <strong>مشخصات اعضای گروه :</strong>
+                        <div class="forms">
+                            <div class="members">
+                            </div>
+                            <div class="add-button" id="member-add">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="submit-input">

@@ -8,7 +8,7 @@
         <div class="intro-section">
             <div class="text">
                 <p id="header">به چهاردهمین نمایشگاه هوگر خوش آمدید !!</p>
-                <p id="body">سلام پژوهشگر ! به نمایشگاه بزرگ هوگر خوش آمدی . نمایشگاهی که بعد  6 سال برگشته تا دوباره پذیرای طرح ها و پژوهش های جداب شما باشه. پس همراه ما باش و اخبارمون رو دنبال کن که جا نیافتی !!</p>
+                <p id="body">سلام پژوهشگر ! به نمایشگاه بزرگ هوگر خوش آمدی . نمایشگاهی که بعد  6 سال برگشته تا دوباره پذیرای طرح ها و پژوهش های جذاب شما باشه. پس همراه ما باش و اخبارمون رو دنبال کن که جا نیافتی !!</p>
             </div>
             {% if user.is_authenticated %}
                 <a class="intro-button" href="{% url 'submissions' %}">
@@ -19,6 +19,8 @@
                     <p>ورود / ثبت نام</p>
                 </a>
             {% endif %}
+        </div>
+        <div class="video-section">
             <div class="wave-top">
                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                     <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
@@ -26,22 +28,104 @@
                     <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
                 </svg>
             </div>
-        </div>
-        <div class="video-section">
             <i id="right" class="fa-solid fa-chevron-right arrow"></i>
             <i id="left" class="fa-solid fa-chevron-left arrow"></i>
             <div class="content">
                 <ul class="videos">
-                    <li class="video" style="background-color: blue;"></li>
-                    <li class="video" style="background-color: violet;"></li>
-                    <li class="video" style="background-color: red;"></li>
-                    <li class="video" style="background-color: red;"></li>
-                    <li class="video" style="background-color: red;"></li>
+                    {% for model in videos %}
+                        <li class="video" id="video-{{model.num}}">
+                            <video src="/media/{{model.video}}" id="vid"></video>
+                            <div class="controls">
+                                <button class="play"><i class="fa fa-play" style="display: block;"></i><i class="fa fa-pause" style="display: none;"></i></button>
+                                <button class="rewind"><i class="fa fa-fast-backward"></i></button>
+                                <div class="timeline">
+                                    <div class="bar">
+                                        <div class="inner"></div>
+                                    </div>
+                                </div>
+                                <button class="forward"><i class="fa fa-fast-forward"></i></button>
+                                <button class="fullscreen"><i class="fa fa-expand"></i></button>
+                                <button class="download"><i class="fa fa-cloud-download"></i></button>
+                            </div>
+                            
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="wave-bottom">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                    <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="road-section">
+            <div class="introduction">
+                <p id="header">اصلا هوگر چیه ؟؟</p>
+                <p id="body">هوگر یک نمایشگاه درون مدرسه ایه که با جذب طرح ها و پژوهش های جذاب بچه ها، با تشکیل یک نمایشگاه آنها رو به بقیه مدارس و دیگر افراد نشون میده!!</p>
+            </div>
+            <div class="road-map">
+                <ul class="stages">
+                    <li class="stage">
+                        <div class="content">
+                            <p id="header">همایش معرفی هوگر</p>
+                            <p id="body">معرفی هوگر به بچه ها در مدرسه شهید سلطانی سه</p>
+                        </div>
+                    </li>
+                    <li class="stage">
+                        <div class="content">
+                            <p id="header">ثبت طرح ها</p>
+                            <p id="body">پژوهشگرا ها با انتخاب گزینه ثبت طرح، اعضای تیم و اطلاعات طرح خود را ثبت می کنند.</p>
+                        </div>
+                    </li>
+                    <li class="stage">
+                        <div class="content">
+                            <p id="header">داوری طرح ها</p>
+                            <p id="body">بعد از ثبت طرح همه پژوهشگرا تیم داوری شروغ به قضاوت طرح ها میکند تا طرح های منتخب را انتخاب کنند.</p>
+                        </div>
+                    </li>
+                    <li class="stage">
+                        <div class="content">
+                            <p id="header">اجرای طرح های منتخب</p>
+                            <p id="body">به اجرا درآوردن طرح های تاییدی توسط پژوهشگر ها.</p>
+                        </div>
+                    </li>
+                    <li class="stage">
+                        <div class="content">
+                            <p id="header">اختصاص غرفه ها و برگزاری نمایشگاه</p>
+                            <p id="body">اختصاص یافتن یک غرفه به هر پژوهشگر برای اجرای نمایشگاه</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="line">
+                    <div class="bar"></div>
+                </div>
+                <ul class="checkpoints">
+                    <li class="checkpoint">
+                        <i class="fa-solid fa-users"></i>
+                    </li>
+                    <li class="checkpoint">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                    </li>
+                    <li class="checkpoint">
+                        <i class="fa-solid fa-gavel"></i>
+                    </li>
+                    <li class="checkpoint">
+                        <i class="fa-solid fa-pencil"></i>
+                    </li>
+                    <li class="checkpoint">
+                        <i class="fa-solid fa-person-chalkboard"></i>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="about-section">
+            <div class="blob">
+                <img src='{% static "main/imgs/outlineCom.png" %}' alt="background">
+            </div>
             <div class="content">
+                
                 <ul class="crousel">
                     <li class="card">
                         <div class="card-content">
@@ -49,7 +133,18 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
+                                <p class="name">پایا خواجه پور</p>
+                                <p class="position">مدیریت هوگر</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="card-content">
+                            <div class="image">
+                                <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
+                            </div>
+                            <div class="text">
+                                <p class="name">امیررضا گوهری</p>
                                 <p class="position">طراح و برنامه نویس سایت</p>
                             </div>
                         </div>
@@ -60,8 +155,8 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
-                                <p class="position">طراح و برنامه نویس سایت</p>
+                                <p class="name">ایلیا ثاقب</p>
+                                <p class="position">معاونت رسانه</p>
                             </div>
                         </div>
                     </li>
@@ -71,8 +166,8 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
-                                <p class="position">طراح و برنامه نویس سایت</p>
+                                <p class="name">شایان شعبانپور</p>
+                                <p class="position">معاونت استودیو</p>
                             </div>
                         </div>
                     </li>
@@ -82,8 +177,8 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
-                                <p class="position">طراح و برنامه نویس سایت</p>
+                                <p class="name">علی لوائی</p>
+                                <p class="position">معاونت پژوهشی</p>
                             </div>
                         </div>
                     </li>
@@ -93,8 +188,8 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
-                                <p class="position">طراح و برنامه نویس سایت</p>
+                                <p class="name">نیروان علوی</p>
+                                <p class="position">معاونت اجرایی</p>
                             </div>
                         </div>
                     </li>
@@ -104,12 +199,24 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
-                                <p class="position">طراح و برنامه نویس سایت</p>
+                                <p class="name">ساتیار کشاورز</p>
+                                <p class="position">معاونت فنی</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="card-content">
+                            <div class="image">
+                                <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
+                            </div>
+                            <div class="text">
+                                <p class="name">مهدی البرزی</p>
+                                <p class="position">معاونت مالی</p>
                             </div>
                         </div>
                     </li>
                 </ul>
+                
                 <ul class="crousel">
                     <li class="card">
                         <div class="card-content">
@@ -117,7 +224,18 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
+                                <p class="name">پایا خواجه پور</p>
+                                <p class="position">مدیریت هوگر</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="card-content">
+                            <div class="image">
+                                <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
+                            </div>
+                            <div class="text">
+                                <p class="name">امیررضا گوهری</p>
                                 <p class="position">طراح و برنامه نویس سایت</p>
                             </div>
                         </div>
@@ -128,8 +246,8 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
-                                <p class="position">طراح و برنامه نویس سایت</p>
+                                <p class="name">ایلیا ثاقب</p>
+                                <p class="position">معاونت رسانه</p>
                             </div>
                         </div>
                     </li>
@@ -139,8 +257,8 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
-                                <p class="position">طراح و برنامه نویس سایت</p>
+                                <p class="name">شایان شعبانپور</p>
+                                <p class="position">معاونت استودیو</p>
                             </div>
                         </div>
                     </li>
@@ -150,8 +268,8 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
-                                <p class="position">طراح و برنامه نویس سایت</p>
+                                <p class="name">علی لوائی</p>
+                                <p class="position">معاونت پژوهشی</p>
                             </div>
                         </div>
                     </li>
@@ -161,8 +279,8 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
-                                <p class="position">طراح و برنامه نویس سایت</p>
+                                <p class="name">نیروان علوی</p>
+                                <p class="position">معاونت اجرایی</p>
                             </div>
                         </div>
                     </li>
@@ -172,8 +290,19 @@
                                 <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
                             </div>
                             <div class="text">
-                                <strong class="name">امیررضا گوهری</strong>
-                                <p class="position">طراح و برنامه نویس سایت</p>
+                                <p class="name">ساتیار کشاورز</p>
+                                <p class="position">معاونت فنی</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="card-content">
+                            <div class="image">
+                                <img src="{% static 'main/imgs/Untitled.png' %}" alt="image">
+                            </div>
+                            <div class="text">
+                                <p class="name">مهدی البرزی</p>
+                                <p class="position">معاونت مالی</p>
                             </div>
                         </div>
                     </li>

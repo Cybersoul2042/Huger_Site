@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from import_export.admin import ImportExportModelAdmin
 
-from .models import CustomUser, Project
+from .models import CustomUser, Project, Member, Image, HugerVideo
 
 
-class CustomUserAdmin(UserAdmin):
+class CustomUserAdmin(UserAdmin, ImportExportModelAdmin):
     model = CustomUser
-    list_display = ("email", "is_staff", "is_active",)
+    list_display = ('ssn',"email", "is_staff", "is_active",)
     list_filter = ("email", "is_staff", "is_active",)
     fieldsets = (
         (None, {"fields": ("email", "password")}),
@@ -21,15 +22,37 @@ class CustomUserAdmin(UserAdmin):
             )}
         ),
     )
-    search_fields = ("email",)
-    ordering = ("email",)
+    search_fields = ("email", 'ssn')
+    ordering = ("ssn",)
 
-class ProjectAdmin(admin.ModelAdmin):
+class ProjectAdmin(ImportExportModelAdmin):
     model = Project
-    list_display = ("p_Leader", "user", "p_Subject", "isChecked",)
-    
-    ordering = ("p_Leader",)
+    list_display = ("user_name", "user_surname","p_Subject", "p_Major", "p_Year", "isChecked", )
+    list_filter = ("user", "p_Major", "p_Year",)
+    ordering = ("user",)
 
+class ImageAdmin(admin.ModelAdmin):
+    model = Image
+    list_display = ["project_model"]
+
+    ordering = ("project_model",)
+
+class MemberAdmin(ImportExportModelAdmin):
+    model = Member
+    list_display = ["project_model", "name", "surname", "major", "grade"]
+    list_filter = ("major", "grade")
+
+    search_fields = ("name", "surname", 'project_model')
+    ordering = ("project_model",)
+
+class HugerVideoAdmin(admin.ModelAdmin):
+    model = HugerVideo
+    list_display = ["name"]
+
+    ordering = ("name",)
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(Image, ImageAdmin)
+admin.site.register(Member, MemberAdmin)
+admin.site.register(HugerVideo, HugerVideoAdmin)

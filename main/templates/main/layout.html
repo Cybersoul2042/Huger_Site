@@ -1,29 +1,56 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en" style="scroll-behavior: smooth;">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://kit.fontawesome.com/5862bcab4a.js" crossorigin="anonymous"></script>
+        <link rel="icon" href="{% static 'main/imgs/favicon.ico' %}">
         <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+        <script src="https://kit.fontawesome.com/5862bcab4a.js" crossorigin="anonymous"></script>
         <title>Home</title>
     </head>
     <body>
-        <div class="layout">
+        <script>
+           0
+        </script>
+        <div id="preloader"></div>
+        <div class='sorry'><p>با عرض پوزش سایت برای حدمات به تلفن های همراه آماده نیست، لطفا با کامپیوتر شحصی یا لپتاب وارد شوید</p></div>
+        <div class="layout" id="layout" style="display: grid;">
+            <div class="scroll-up">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM151.2 217.4c-4.6 4.2-7.2 10.1-7.2 16.4c0 12.3 10 22.3 22.3 22.3l41.7 0 0 96c0 17.7 14.3 32 32 32l32 0c17.7 0 32-14.3 32-32l0-96 41.7 0c12.3 0 22.3-10 22.3-22.3c0-6.2-2.6-12.1-7.2-16.4l-91-84c-3.8-3.5-8.7-5.4-13.9-5.4s-10.1 1.9-13.9 5.4l-91 84z"/>
+                </svg>
+            </div>
             <div class="contianer">
                 <div class="container-content">
                     <header class="navbar-container">
-                        <div class="navbar">
+                        <div class="navbar" id="second">
                             <div class="navbar-section" id="logo">
-                                <img src="{% static 'main/imgs/site_logo.png' %}" alt="logo" id="img1">
+                                <a href="{% url 'index' %}"><img src="{% static 'main/imgs/site_logo.png' %}" alt="logo" id="img1"></a>
+                            </div>
+                            <div class="navbar-button">
+                                <i class="fa-solid fa-bars"></i>
+                            </div>
+                        </div>
+                       
+                        <div class="navbar" id="first">
+                            <div class="navbar-section" id="logo">
+                                <a href="{% url 'index' %}"><img src="{% static 'main/imgs/site_logo.png' %}" alt="logo" id="img1"></a>
                             </div>
                             <div class="navbar-section" id="buttons">
-                                <div class="normal-button" id="contact-us">
-                                    <a id="site-button" href="{% url 'index' %}">ارتباط با ما</a>
+                                <div class="normal-button" id="contact">
+                                    <a id="site-button">ارتباط با ما</a>
                                 </div>
-                                <div class="normal-button" id="about">
-                                    <a id="site-button">درباره ما</a>
+                                <div class="normal-button" id="about-buttons">
+                                    <i class="fa-solid fa-angle-up"></i>
+                                    <a id="site-button" class="about-huger">درباره هوگر</a>
+                                   
+                                    <div class="modal" style="visibility: hidden; opacity: 0;">
+                                        <i class="fa-solid fa-caret-up"></i>
+                                        <p id="road">نقشه راه</p>
+                                        <p id="about">تیم هوگر</p>
+                                    </div>
                                 </div>
                                 
                                 {% if user.is_authenticated %}
@@ -31,13 +58,13 @@
                                         <p>ثبت / پیگیری طرح</p>
                                     </a>
                                 {% endif %}
-                                <div class="normal-button" id="news">
+                                <div class="normal-button" id="video">
                                     <a id="site-button">اخبار هوگر</a>
                                 </div>
                                 {% if user.is_authenticated %}
-                                    <div class="normal-button" id="logout">
-                                        <a href="{% url 'logout' %}">
-                                            خروج
+                                    <div class="normal-button" id="home">
+                                        <a href="{% url 'index' %}">
+                                            صفحه اصلی
                                         </a>
                                     </div>
                                 {% endif %}
@@ -47,9 +74,9 @@
                                 
                                 {% if user.is_authenticated %}
                                     <div id="user">
-                                        <p>
-                                            !! به هوگر خوش آمدی 
-                                        </p>
+                                        <a href="{% url 'logout' %}" id="logout">
+                                            <p>خروج</p>
+                                        </a>
                                     </div>
                                 {% else %}
                                     <a href="{% url 'login' %}" id="login">
@@ -59,30 +86,80 @@
                             </div>
                         </div>
                     </header>
+                    <!-- <div class="navbar-modal" style="height: 0px;">
+                        <div class="modal">
+                            <div class="navbar-section" id="buttons">
+                                {% if user.is_authenticated %}
+                                    <a id="project-btn" href="{% url 'submissions' %}">
+                                        <p>ثبت / پیگیری طرح</p>
+                                    </a>
+                                {% endif %}
+                                
+                                <div class="normal-button" id="home-btn">
+                                    <a id="home" href="{% url 'index' %}">
+                                        صفحه اصلی
+                                    </a>
+                                </div>
+                                
+                                <div class="normal-button" id="video-btn">
+                                    <a id="video">اخبار هوگر</a>
+                                </div>
+                                <div class="normal-button" id="road-btn">
+                                    <p id="road">نقشه راه</p>
+                                </div>
+                                <div class="normal-button" id="about-btn">
+                                    <p id="about">تیم هوگر</p>
+                                </div>
+                                <div class="normal-button" id="contact-btn">
+                                    <p id="contact">ارتباط با ما</p>
+                                </div>
+                                {% if user.is_authenticated %}
+                                    
+                                    <a class="state" href="{% url 'logout' %}" id="logout">
+                                        <p>خروج</p>
+                                    </a>
+                                    
+                                {% else %}
+                                    <a class="state" href="{% url 'login' %}" id="login">
+                                        <p>ورود / ثبت نام</p>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                       
+                    </div> -->
                     <div class="body-container">
                         {% block content %}
                         
                         {% endblock content %}
                     </div>
-                    <footer class="footer-container">
+                    <footer class="contact-section">
                         <div class="footer">
                             <div class="footer-content">
                                 <div class="contact-ways">
-                                    <a href="#" class="contact-way" id="email">
-                                        <i class="fa-solid fa-envelope"></i>
-                                        <p style="margin: 0;">Email Us</p>
+                                    <a href="https://eitaa.com/soltani_G10_1403" class="contact-way" id="eitaa">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m5.968 23.942a6.624 6.624 0 0 1 -2.332-.83c-1.62-.929-2.829-2.593-3.217-4.426-.151-.717-.17-1.623-.15-7.207.019-6.009.005-5.699.291-6.689.142-.493.537-1.34.823-1.767 1.055-1.57 2.607-2.578 4.53-2.943.384-.073.94-.08 6.056-.08 6.251 0 6.045-.009 7.066.314a6.807 6.807 0 0 1 4.314 4.184c.33.937.346 1.087.369 3.555l.02 2.23-.391.268c-.558.381-1.29 1.06-2.316 2.15-1.182 1.256-2.376 2.42-2.982 2.907-1.309 1.051-2.508 1.651-3.726 1.864-.634.11-1.682.067-2.302-.095-.553-.144-.517-.168-.726.464a6.355 6.355 0 0 0 -.318 1.546l-.031.407-.146-.03c-1.215-.241-2.419-1.285-2.884-2.5a3.583 3.583 0 0 1 -.26-1.219l-.016-.34-.309-.284c-.644-.59-1.063-1.312-1.195-2.061-.212-1.193.34-2.542 1.538-3.756 1.264-1.283 3.127-2.29 4.953-2.68.658-.14 1.818-.177 2.403-.075 1.138.198 2.067.773 2.645 1.639.182.271.195.31.177.555a.812.812 0 0 1 -.183.493c-.465.651-1.848 1.348-3.336 1.68-2.625.585-4.294-.142-4.033-1.759.026-.163.04-.304.031-.313-.032-.032-.293.104-.575.3-.479.334-.903.984-1.05 1.607-.036.156-.05.406-.034.65.02.331.053.454.192.736.092.186.275.45.408.589l.24.251-.096.122a4.845 4.845 0 0 0 -.677 1.217 3.635 3.635 0 0 0 -.105 1.815c.103.461.421 1.095.739 1.468.242.285.797.764.886.764.024 0 .044-.048.044-.106.001-.23.184-.973.326-1.327.423-1.058 1.351-1.96 2.82-2.74.245-.13.952-.47 1.572-.757 1.36-.63 2.103-1.015 2.511-1.305 1.176-.833 1.903-2.065 2.14-3.625.086-.57.086-1.634 0-2.207-.368-2.438-2.195-4.096-4.818-4.37-2.925-.307-6.648 1.953-8.942 5.427-1.116 1.69-1.87 3.565-2.187 5.443-.123.728-.169 2.08-.093 2.75.193 1.704.822 3.078 1.903 4.156a6.531 6.531 0 0 0 1.87 1.313c2.368 1.13 4.99 1.155 7.295.071.996-.469 1.974-1.196 3.023-2.25 1.02-1.025 1.71-1.88 3.592-4.458 1.04-1.423 1.864-2.368 2.272-2.605l.15-.086-.019 3.091c-.018 2.993-.022 3.107-.123 3.561-.6 2.678-2.54 4.636-5.195 5.242l-.468.107-5.775.01c-4.734.008-5.85-.002-6.19-.056z"/>
+                                        </svg>
+                                        <p style="margin: 0;">Eitaa</p>
                                     </a>
                                     <a href="https://t.me/+pDLLMixRtuFjZTk0" class="contact-way" id="telegram">
-                                        <i class="fa-brands fa-telegram"></i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                                            <path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7 .2-.7 .3-3.1-1.2-4.4s-3.6-.8-5.1-.5q-3.3 .7-104.6 69.1-14.8 10.2-26.9 9.9c-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3q.8-6.7 18.5-13.7 108.4-47.2 144.6-62.3c68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6 .5 9.6 2.9a10.5 10.5 0 0 1 3.5 6.7A43.8 43.8 0 0 1 363 176.7z"/>
+                                        </svg>
                                         <p style="margin: 0;">Telegram</p>
                                     </a>
                                     <a href="https://www.instagram.com/huger.14?igsh=bGV0bmI4enBoNTRw" class="contact-way" id="instagram">
-                                        <i class="fa-brands fa-instagram"></i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+                                        </svg>
                                         <p style="margin: 0;">Instagram</p>
                                     </a>
-                                    <a href="#" class="contact-way" id="ticket">
-                                        <i class="fa-solid fa-ticket"></i>
-                                        <p style="margin: 0;">Ticket</p>
+                                    <a href="https://soltani3.ir/" class="contact-way" id="school">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                                            <path d="M320 32c-8.1 0-16.1 1.4-23.7 4.1L15.8 137.4C6.3 140.9 0 149.9 0 160s6.3 19.1 15.8 22.6l57.9 20.9C57.3 229.3 48 259.8 48 291.9l0 28.1c0 28.4-10.8 57.7-22.3 80.8c-6.5 13-13.9 25.8-22.5 37.6C0 442.7-.9 448.3 .9 453.4s6 8.9 11.2 10.2l64 16c4.2 1.1 8.7 .3 12.4-2s6.3-6.1 7.1-10.4c8.6-42.8 4.3-81.2-2.1-108.7C90.3 344.3 86 329.8 80 316.5l0-24.6c0-30.2 10.2-58.7 27.9-81.5c12.9-15.5 29.6-28 49.2-35.7l157-61.7c8.2-3.2 17.5 .8 20.7 9s-.8 17.5-9 20.7l-157 61.7c-12.4 4.9-23.3 12.4-32.2 21.6l159.6 57.6c7.6 2.7 15.6 4.1 23.7 4.1s16.1-1.4 23.7-4.1L624.2 182.6c9.5-3.4 15.8-12.5 15.8-22.6s-6.3-19.1-15.8-22.6L343.7 36.1C336.1 33.4 328.1 32 320 32zM128 408c0 35.3 86 72 192 72s192-36.7 192-72L496.7 262.6 354.5 314c-11.1 4-22.8 6-34.5 6s-23.5-2-34.5-6L143.3 262.6 128 408z"/>
+                                        </svg>
+                                        <p style="margin: 0;">Sahid Soltani 3</p>
                                     </a>
                                 </div>
                                 <div class="policy">
@@ -95,5 +172,8 @@
             </div>
         </div>
         <script src="{% static 'main/js/main.js' %}"></script>
+        <script src="{% static 'main/js/submit.js' %}"></script>
+        <script src="{% static 'main/js/video.js' %}"></script>
+        <script src="{% static 'main/js/styles.js' %}"></script>
     </body>
 </html>
