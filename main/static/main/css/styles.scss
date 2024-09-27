@@ -63,6 +63,15 @@ html, body {
 
 .sorry{
     width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        direction: rtl;
+        text-align: center;
+        font-size: 1.3rem;
+    }
 }
 
 #preloader{
